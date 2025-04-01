@@ -3,9 +3,15 @@ package com.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 
 public class Loginpage {
+	WebDriver driver;
     @FindBy(xpath = "//input[@id='user-name']")
     WebElement user;
     @FindBy(xpath = "//input[@id='password']")
@@ -30,7 +36,20 @@ public class Loginpage {
     WebElement checkout;
     @FindBy(xpath="//button[text()='REMOVE']")
     WebElement lastassert;
-  
+    @FindBy(xpath="//button[text()='ADD TO CART']")
+    WebElement removever;
+    @FindBy(xpath="//input[@id='first-name']")
+    WebElement infofn;
+    @FindBy(xpath="//input[@id='last-name']")
+    WebElement infoln;
+    @FindBy(xpath="//input[@id='postal-code']")
+    WebElement infopin;
+    @FindBy(xpath="//input[@class='btn_primary cart_button']")
+    WebElement con;
+    @FindBy(xpath="//a[@class='btn_action cart_button']")
+    WebElement finish;
+    @FindBy(xpath="//h2")
+    WebElement completion;
     public Loginpage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
@@ -40,6 +59,9 @@ public class Loginpage {
         submit.click();
         
     }
+    public String Removever() {
+    	return removever.getText();
+    	}
     public String last() {
     	return lastassert.getText();
     }
@@ -68,6 +90,14 @@ public class Loginpage {
     	clicon.click();
     }
     public void checkoutt() {
-    	checkout.click();
+    	checkout.click(); 
+    }
+    public void send() {
+    	 infofn.sendKeys("Dhara");
+         infoln.sendKeys("M");
+         infopin.sendKeys("123456");
+         con.click(); 
+         finish.click();   
+         System.out.println(completion.getText());
     }
 }
